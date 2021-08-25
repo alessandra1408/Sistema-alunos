@@ -1,0 +1,17 @@
+div{
+    width: 100%;
+    display: block;
+    justify-content: center;
+}
+
+header{
+    width: 95%;
+    font-weight: bold;
+    font-size: 14pt;
+    color: white;
+    margin-left: 2.5%;
+    background-color: rgb(47, 47, 47);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 25px 0px;
+}
