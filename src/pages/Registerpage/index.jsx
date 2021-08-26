@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header'
-import FormRegister from '../../components/FormRegister';
+import FormRegister from '../../components/Form/FormRegister';
 import Homepage from '../../pages/Homepage'
 import Editpage from '../Editpage';
 import Route from '../../route';

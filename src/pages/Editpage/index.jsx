@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header';
-import FormEdit from '../../components/FormEdit'
+import FormEdit from '../../components/Form/FormEdit'
 
 
 class Editpage extends Component{

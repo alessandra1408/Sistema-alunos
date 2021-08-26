@@ -4,8 +4,7 @@ import {BrowserRouter, Switch, Route, Link
 import Editpage from "./pages/Editpage";
 import Homepage from "./pages/Homepage";
 import Registerpage from "./pages/Registerpage";
-import FormRegister from "./components/FormRegister";
-
+import FormRegister from './components/Form/FormRegister'
 
 export default function Routes() {
   return (

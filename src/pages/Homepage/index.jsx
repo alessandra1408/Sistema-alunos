@@ -7,6 +7,7 @@ class Homepage extends Component{
     render(){
         return(
             <>
+            <Link to="/register">Register</Link>
             <h1>Home page</h1>
             </>
             
