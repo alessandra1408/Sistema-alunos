@@ -21,7 +21,10 @@ class SelectImage extends Component {
                 <label>{this.props.labelName}</label>
                 <select onChange={this.onChangeSelected}>
                     {this.props.opcoes.map((item, index)=>(
-                        <option key={index}>{item.value}</option>
+                        <>
+                            <option key={index}>{item.value}</option>
+                            <br />
+                        </>
                     ))}
                 </select>
                 

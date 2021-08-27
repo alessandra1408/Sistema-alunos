@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import SelectRestrictions from '../../Select/Restrictions';
 import SelectImage from '../../Select/UseImage';
 import { Link } from 'react-router-dom';
-import './index.css'
+import './style.css'
+import Header from '../../Header';
   
 
 class FormRegister extends Component {
@@ -10,21 +11,33 @@ class FormRegister extends Component {
         super(props);
         this.state = {
         isGoing: true,
-        numberOfGuests: 2
+        numberOfGuests: 2,
+        name: ''
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const name = event.target.name;
+    const value = event.target.value;
     this.setState({
       [name]: value});
 
-    localStorage.setItem([name],JSON.stringify({value}))
+    return {
+        name, value
+    }
+    
+  }
+
+  handleSubmit(event){
     event.preventDefault();
+    
+    this.setState({
+        [event.target.name]: event.target.value});
+    localStorage.setItem([event.target.name],JSON.stringify([event.target.value]))
+    console.log(this.state);
   }
 
         /* super(props)
@@ -49,7 +62,7 @@ class FormRegister extends Component {
 
     render(){
 
-        const formNewStudent = [
+        const formNewStudent01 = [
             {
                 labelName: 'Nome do Aluno',
                 inputId: 'studentName'
@@ -59,21 +72,20 @@ class FormRegister extends Component {
                 inputId: 'dayBirth'
             },
             {
-                labelName: 'Responsável pelo Aluno',
+                labelName: 'Nome do Responsável pela Criança',
                 inputId: 'studentGuardian'
             },
             {
-                labelName: 'Número do Responsável pelo Aluno',
+                labelName: 'Em caso de emergência avisar: (Pais, Tios, Avós, Padrinhos)',
                 inputId: 'guardianNumber'
             },
             {
-                labelName: 'Em caso de Emergência avisar',
+                labelName: 'Telefone para Emergências',
                 inputId: 'emergencyCase'
-            },
-            {
-                labelName: 'Número de emergência',
-                inputId: 'emergencyNumber'
-            },
+            }
+        ];
+
+        const formNewStudent02 = [
             {
                 labelName: 'Lista de autoriados a buscar a criança',
                 inputId: 'authorizationList'
@@ -99,29 +111,48 @@ class FormRegister extends Component {
                 value: 'NÃO'
             }
         ];
-        
-        const description = [
-            {
-                labelName: 'Descrição das Restrições:',
-                inputId: 'resDescription'
-            }
-        ];
 
         return (
             <>
-            <Link to="/">Home</Link>
+            <div id="divMenu">
+                <nav>
+                        <ul>
+                            <li>
+                            <Link to="/">Home</Link>
+                            </li>
+
+                            <li>
+                            <Link to="/editpage">Edit</Link>
+                            </li>
+                        </ul>
+                </nav>
+            </div>
+            
+            <div id="divForm"> 
+
             <form onSubmit={this.handleSubmit} >
-                    {formNewStudent.map((item, index)=>(
+                    {formNewStudent01.map((item, index)=>(
                         <>
                             <label htmlFor={index}>{item.labelName}</label>
-                            <input onChange={this.handleInputChange} type="text" value={this.state.inputValue} name={item.labelName} id={item.inputId}/>
-                            
+                            <input onChange={this.handleInputChange} type="text" name={this.state.name} id={item.inputId}/>
+                            <br />
                         </> 
                     ))}
-                    <SelectRestrictions labelName="Possui Restrições Alimentares?" opcoes={sim_ou_nao} infos={description}/>
+
+                    <SelectRestrictions labelName="Possui Restrições Alimentares?" opcoes={sim_ou_nao}/>
+        
                     <SelectImage labelName="Autoriza o uso de imagens para a escola?" opcoes={sim_ou_nao}/>
-                    <input type="submit" />
+
+                    {formNewStudent02.map((item, index)=>(
+                        <>
+                            <label htmlFor={index}>{item.labelName}</label>
+                            <input onChange={this.handleInputChange} type="text" name={this.state.name} id={item.inputId}/>
+                            <br />
+                        </> 
+                    ))}
+                    <button type="submit">Cadastrar</button>
             </form>
+            </div>
             </>
         );
     }

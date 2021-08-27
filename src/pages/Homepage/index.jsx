@@ -8,6 +8,7 @@ class Homepage extends Component{
         return(
             <>
             <Link to="/register">Register</Link>
+            <Link to="/editpage">Edit</Link>
             <h1>Home page</h1>
             </>
             

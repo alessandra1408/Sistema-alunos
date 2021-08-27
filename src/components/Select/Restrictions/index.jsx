@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './style.css'
 
 class SelectRestrictions extends Component{
     constructor(props){
@@ -19,15 +19,16 @@ class SelectRestrictions extends Component{
                 <label>{this.props.labelName}</label>
                 <select onChange={this.onChangeSelected}>
                     {this.props.opcoes.map((item, index)=>(
-                        <option key={index}>{item.value}</option>
+                        <>
+                            <option key={index}>{item.value}</option>
+                        </>
                     ))}
                 </select>
-                {this.props.infos.map((item, index)=>(
-                    <div>
-                        <label htmlFor={index}>{item.labelName}</label>
-                        <input type="text" name={index} id={item.inputId}/>
-                    </div> 
-                ))}
+
+                <label htmlFor="restricoes" id="Textarea">Descrição das restricões</label>
+                            <textarea name="restricoes" id="restricoes" cols="90" rows="5"></textarea>
+                            <br />
+
             </div>
         )
     }
