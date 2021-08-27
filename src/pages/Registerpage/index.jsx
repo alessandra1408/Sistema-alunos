@@ -49,7 +49,7 @@ class Registerpage extends Component {
 
         return(
             <>  
-                
+                <Link to="/">Home</Link>
                 <Header />
                 <FormRegister infos={formNewStudent}/>
                 <button onClick={Editpage}>CLIQUE AQUI</button>
