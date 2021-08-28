@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import Route from '../../route'
 import { Link } from 'react-router-dom';
-import Registerpage from '../Registerpage';
+import '../Homepage/style.css'
 
 class Homepage extends Component{
     render(){
         return(
             <>
-            <Link to="/register">Register</Link>
-            <Link to="/editpage">Edit</Link>
+            <ul>
+                <li>
+                <Link to="/register">Register</Link>
+                </li>
+
+                <li>
+                <Link to="/editpage">Edit</Link>
+                </li>
+            </ul>s
+            
             <h1>Home page</h1>
             </>
             

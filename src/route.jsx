@@ -4,7 +4,6 @@ import {BrowserRouter, Switch, Route, Link
 import Editpage from "./pages/Editpage";
 import Homepage from "./pages/Homepage";
 import Registerpage from "./pages/Registerpage";
-import FormRegister from './components/Form/FormRegister'
 
 export default function Routes() {
   return (
@@ -16,7 +15,8 @@ export default function Routes() {
             <Homepage />
           </Route>
 
-          <Route path="/register" component={FormRegister}/>
+          {/* queria mandar pra register page, passando a const com props. Mas n funciona!! */}
+          <Route path="/register" render={()=> <Registerpage/>}/>
 
           <Route path="/editpage" component={Editpage}/>
 

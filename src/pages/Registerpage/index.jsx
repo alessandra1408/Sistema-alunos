@@ -1,60 +1,78 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header'
-import FormRegister from '../../components/Form/FormRegister';
-import Homepage from '../../pages/Homepage'
-import Editpage from '../Editpage';
-import Route from '../../route';
 import { Link } from 'react-router-dom';
-
+import '../Registerpage/style.css'
+  
 class Registerpage extends Component {
-    render() {
-        const formNewStudent = [
-            {
-                labelName: 'Nome do Aluno',
-                inputId: 'studentName'
-            },
-            {
-                labelName: 'Data de Nascimento',
-                inputId: 'dayBirth'
-            },
-            {
-                labelName: 'Responsável pelo Aluno',
-                inputId: 'studentGuardian'
-            },
-            {
-                labelName: 'Número do Responsável pelo Aluno',
-                inputId: 'guardianNumber'
-            },
-            {
-                labelName: 'Em caso de Emergência avisar',
-                inputId: 'emergencyCase'
-            },
-            {
-                labelName: 'Número de emergência',
-                inputId: 'emergencyNumber'
-            },
-            {
-                labelName: 'Lista de autoriados a buscar a criança',
-                inputId: 'authorizationList'
-            },
-            {
-                labelName: 'Turma',
-                inputId: 'class'
-            },
-            {
-                labelName: 'Observações adicionais',
-                inputId: 'addInfos'
-            }
-        ];
 
-        return(
-            <>  
-                <Link to="/">Home</Link>
-                <Header />
-                <FormRegister infos={formNewStudent}/>
-                <button onClick={Editpage}>CLIQUE AQUI</button>
-                <h1>PAGINA DE HOME</h1>
-            </>
+    render(){
+
+        return (
+            <div id="divBody">
+                <div id="divMenu">
+                    <nav>
+                            <ul>
+                                <li>
+                                <Link to="/">Home</Link>
+                                </li>
+
+                                <li>
+                                <Link to="/editpage">Edit</Link>
+                                </li>
+                            </ul>
+                    </nav>
+                </div>
+            
+                <div id="divForm"> 
+
+                    <form>
+
+                        <div id="inicial">
+                            <label htmlFor="name">Nome do Aluno</label>
+                            <input id="name" type="text" />
+                            <label htmlFor="birth">Data de Nascimento</label>
+                            <input id="birth" type="date" />
+                            <label htmlFor="responsible">Nome do Responsável pela criança</label>
+                            <input id="responsible" type="text" />
+                            <label htmlFor="responsiblePhone">Telefone de Contato do Responsável pela criança</label>
+                            <input id="responsiblePhone" type="cellphone" />
+                            <label htmlFor="emergencyCase">Em caso de emergência avisar: (Pais, Tios, Avós, Padrinhos)</label>
+                            <input id="emergencyCase" type="text" />
+                            <label htmlFor="emergencyPhone">Telefone para Emergências</label>
+                            <input id="emergencyPhone" type="cellphone" />
+                        </div>
+
+                        <div id="final">
+                            <label htmlFor="selectRestrictions">Possui Restrição Alimentar?</label>
+                            <select name="" id="selectRestrictions">
+                                <option value="SIM"></option>
+                                <option value="NÃO"></option>
+                            </select>
+                            <label htmlFor="name">Descrição das Restrições Alimentares</label>
+                            <input id="descriptionRestrictions" type="cellphone" />
+                            <label htmlFor="selectUseImage">Autorização de fotos e vídeos da criança para uso escolar?</label>
+                            <select name="" id="selectUseImage">
+                                <option value="SIM"></option>
+                                <option value="NÃO"></option>
+                            </select>
+                            
+                            <label htmlFor="authorizedList">Lista de autorizados a buscar a criança. Ex. Pedro – Padrinho, Maria – Tia</label>
+                            <input id="authorizedList" type="text" />
+                            
+                            <label htmlFor="name">Turma</label>
+                            <input id="class" type="text" />
+                            
+                            <label htmlFor="addNotes">Observações adicionais</label>
+                            <input id="addNotes" type="text" />
+                        </div>
+
+                        <footer >
+                            <button type="submit">Cadastrar</button>
+                        </footer>
+
+                    </form>
+                
+                </div>
+            </div>
         );
     }
 }
