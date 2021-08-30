@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import '../Homepage/style.css'
 
 class Homepage extends Component{
-    render({props}){
+    render(){
 
         return(
 
             <>
-            
+
             <ul>
                 <li>
                 <Link to={{

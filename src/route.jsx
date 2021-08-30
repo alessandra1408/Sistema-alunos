@@ -19,10 +19,10 @@ export default function Routes({props}) {
             </Route>
   
             {/* queria mandar pra register page, passando a const com props. Mas n funciona!! */}
-{/*             <Route path="/register" render={({props})=> <Registerpage {...props}/>}/>
+      {/*             <Route path="/register" render={({props})=> <Registerpage {...props}/>}/>
  */}  
 
-            <Route path="/register" render={(props) => <Register  {...props} /> } exact />
+            <Route path="/register" render={(props) => <Registerpage  {...props} /> } exact />
 
             <Route path="/editpage" component={Editpage}/>
   
