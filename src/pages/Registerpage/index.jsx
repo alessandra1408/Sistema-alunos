@@ -38,8 +38,8 @@ class Registerpage extends Component {
 
     handleTextarea = (event) => {
         this.setState({[event.target.name]: event.target.value})
-        /* let check = this.props.location.state.checkRestrictions;
-        console.log(check) */
+        let check = this.props.location.state.checkRestrictions;
+        console.log(check)
     }
 
     render(){
@@ -62,11 +62,8 @@ class Registerpage extends Component {
            }
        ];
 
-       console.log(this.props)
 
         return (
-
-            
 
             <div id="divBody">
                 <div id="divMenu">
@@ -115,7 +112,7 @@ class Registerpage extends Component {
                                 <input id="restrictions" type="checkbox" name="restrictions" value={this.state.restrictions} onChange={this.handleTextarea}/>
                             </div>
 
-                            {this.props.checkRestrictions && (
+                            {this.props.location.state.checkRestrictions && (
                                 <>
                                 <label htmlFor="descriptionRestrictions">Descrição das Restrições Alimentares</label>
                                 <textarea id="descriptionRestrictions" name="descriptionRestrictions" value={this.state.descriptionRestrictions} onChange={this.handleChange}/>

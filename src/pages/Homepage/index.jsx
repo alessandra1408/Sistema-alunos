@@ -12,8 +12,8 @@ class Homepage extends Component{
             <ul>
                 <li>
                 <Link to={{
-                pathname:"/teste",
-                state:{ myName: "Rhenato"}
+                pathname:"/register",
+                state:{ checkRestrictions: true}
                  }}>Vamos pro teste</Link>
                 </li>
 
