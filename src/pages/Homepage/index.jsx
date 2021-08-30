@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom';
 import '../Homepage/style.css'
 
 class Homepage extends Component{
-    render(){
-        const checkRestrictions = true;
+    render({props}){
 
         return(
+
             <>
+            
             <ul>
                 <li>
-                <Link  to="/register" params={{checkRestrictions: true}} >Register</Link>
+                <Link to={{
+                pathname:"/teste",
+                state:{ myName: "Rhenato"}
+                 }}>Vamos pro teste</Link>
                 </li>
 
                 <li>

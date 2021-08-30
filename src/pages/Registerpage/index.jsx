@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Homepage from '../Homepage';
 import '../Registerpage/style.css'
+
   
 class Registerpage extends Component {
     constructor(props){
@@ -18,7 +19,7 @@ class Registerpage extends Component {
             useImage: '',
             authorizedList: '',
             class: '',
-            addNotes: ''
+            addNotes: '',
         }
     }
 
@@ -37,12 +38,8 @@ class Registerpage extends Component {
 
     handleTextarea = (event) => {
         this.setState({[event.target.name]: event.target.value})
-        /* let check = document.getElementById("restrictions")
-        if(check.checked){
-            const checkRestrictions =  this.props.checkRestrictions;
-            checkRestrictions = true;
-        } */
-
+        /* let check = this.props.location.state.checkRestrictions;
+        console.log(check) */
     }
 
     render(){
@@ -65,9 +62,11 @@ class Registerpage extends Component {
            }
        ];
 
-
+       console.log(this.props)
 
         return (
+
+            
 
             <div id="divBody">
                 <div id="divMenu">

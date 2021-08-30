@@ -6,7 +6,7 @@ import Editpage from "./pages/Editpage";
 import Homepage from "./pages/Homepage";
 import Registerpage from "./pages/Registerpage";
 
-export default function Routes() {
+export default function Routes({props}) {
 
     return (
 
@@ -19,8 +19,11 @@ export default function Routes() {
             </Route>
   
             {/* queria mandar pra register page, passando a const com props. Mas n funciona!! */}
-            <Route path="/register" render={()=> <Registerpage/>}/>
-  
+{/*             <Route path="/register" render={({props})=> <Registerpage {...props}/>}/>
+ */}  
+
+            <Route path="/register" render={(props) => <Register  {...props} /> } exact />
+
             <Route path="/editpage" component={Editpage}/>
   
             {/* <Route>404 Not Found</Route> */}
