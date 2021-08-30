@@ -4,17 +4,19 @@ import '../Homepage/style.css'
 
 class Homepage extends Component{
     render(){
+        const checkRestrictions = true;
+
         return(
             <>
             <ul>
                 <li>
-                <Link to="/register">Register</Link>
+                <Link  to="/register" params={{checkRestrictions: true}} >Register</Link>
                 </li>
 
                 <li>
                 <Link to="/editpage">Edit</Link>
                 </li>
-            </ul>s
+            </ul>
             
             <h1>Home page</h1>
             </>
