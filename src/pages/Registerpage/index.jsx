@@ -14,7 +14,7 @@ class Registerpage extends Component {
             responsiblePhone: '',
             emergencyCase: '',
             emergencyPhone: '',
-            restrictions: '',
+            restrictions: this.handleTextarea.bind(),
             descriptionRestrictions: '',
             useImage: '',
             authorizedList: '',
@@ -22,7 +22,7 @@ class Registerpage extends Component {
             addNotes: '',
         }
     }
-
+    
     onChangeSelect = (event) => {
         this.setState({restrictions: event.target.value})
         console.log(this.state.restrictions)
@@ -39,6 +39,20 @@ class Registerpage extends Component {
     handleTextarea = (event) => {
         this.setState({[event.target.name]: event.target.value})
         let check = this.props.location.state.checkRestrictions;
+        let checkbox = document.getElementById([event.target.name]);
+        console.log("checkbox: ", checkbox)
+        console.log("Antes",this.props.location.state.checkRestrictions)
+
+        this.setState({[event.target.name]: this.props.location.state.checkRestrictions})
+
+        if(checkbox.checked){
+            this.setState({[event.target.name]: true})
+        }
+        else{
+            this.setState({[event.target.name]: false})
+        }
+        
+        /* this.setState({this.props.location.state.checkRestrictions: false}) */
         console.log(check)
     }
 
@@ -61,7 +75,6 @@ class Registerpage extends Component {
                value: 'Padrinhos'
            }
        ];
-
 
         return (
 
@@ -107,22 +120,24 @@ class Registerpage extends Component {
                         </div>
                             
                         <div id="final">
-                            <div class="divCheckbox">
+                            <div id="divCheckboxRestrictions">
                                 <label htmlFor="restrictions">Possui Restrição Alimentar?</label>
                                 <input id="restrictions" type="checkbox" name="restrictions" value={this.state.restrictions} onChange={this.handleTextarea}/>
-                            </div>
-
-                            {this.props.location.state.checkRestrictions && (
+                            
+                                </div> 
+                            {this.state.restrictions && (
                                 <>
                                 <label htmlFor="descriptionRestrictions">Descrição das Restrições Alimentares</label>
                                 <textarea id="descriptionRestrictions" name="descriptionRestrictions" value={this.state.descriptionRestrictions} onChange={this.handleChange}/>
                                 </>
                             )}
-                            
-                            <div class="divCheckbox">
+                           
+
+                            <div id="divCheckboxUseImage">
                                 <label htmlFor="useImage">Autorização de fotos e vídeos da criança para uso escolar?</label>
-                                <input type="checkbox" name="useImage" value={this.state.useImage}/>
+                                <input type="checkbox" name="useImage" value={this.state.useImage} id="useImage" onChange={this.handleTextarea}/>
                             </div>
+
                             <label htmlFor="authorizedList">Lista de autorizados a buscar a criança. Ex. Pedro – Padrinho, Maria – Tia</label>
                             <input id="authorizedList" type="text" name="authorizedList" value={this.state.authorizedList} onChange={this.handleChange}/>
                             

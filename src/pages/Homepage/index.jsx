@@ -13,7 +13,7 @@ class Homepage extends Component{
                 <li>
                 <Link to={{
                 pathname:"/register",
-                state:{ checkRestrictions: true}
+                state:{checkRestrictions:''}
                  }}>Vamos pro teste</Link>
                 </li>
 

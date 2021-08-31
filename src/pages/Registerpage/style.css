@@ -17,7 +17,24 @@
     float: right;
 }
 
-.divCheckbox{
+#divCheckboxRestrictions{
+    width: 100%;
+    display: inline-flex;
+    margin-bottom: 15px;
+}
+
+#divCheckboxRestrictions label{
+
+    float: left;
+}
+
+#divCheckboxRestrictions input{
+    width: min-content;
+    height: min-content;
+    float: right;
+}
+
+#divCheckboxUseImage{
     width: 100%;
     display: inline-flex;
 }
