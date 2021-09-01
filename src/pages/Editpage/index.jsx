@@ -6,9 +6,15 @@ class Editpage extends Component{
     constructor(props){
         super(props)
         this.state = {
-            fill: ''
+            fill: 'iiiiiiii'
         };
     }
+
+    inputLocal = () => {
+        localStorage.getItem()
+    }
+
+
     render(){
         return(
             <div id="divBody">
@@ -25,6 +31,13 @@ class Editpage extends Component{
                             </ul>
                     </nav>
                 </div>
+
+                <div>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+                        
 
                 <div id="divForm"> 
 

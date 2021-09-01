@@ -1,6 +1,10 @@
 import React, { Component, useState} from 'react';
 import { Link } from 'react-router-dom';
+import Editpage from '../Editpage';
 import Homepage from '../Homepage';
+import InputMask from "react-input-mask"
+import Date from './Date'
+
 import '../Registerpage/style.css'
 
   
@@ -14,9 +18,9 @@ class Registerpage extends Component {
             responsiblePhone: '',
             emergencyCase: '',
             emergencyPhone: '',
-            restrictions: this.handleTextarea.bind(),
+            restrictions: false,
             descriptionRestrictions: '',
-            useImage: '',
+            useImage: false,
             authorizedList: '',
             class: '',
             addNotes: '',
@@ -24,20 +28,26 @@ class Registerpage extends Component {
     }
     
     onChangeSelect = (event) => {
-        this.setState({restrictions: event.target.value})
-        console.log(this.state.restrictions)
+        this.setState({[event.target.name]: event.target.value})
+        console.log({[event.target.name]: event.target.value})
     }
 
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value})
+
+        console.log({[event.target.name]: event.target.value});
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault()
         console.log(this.state)
+        localStorage.setItem(this.state.name,JSON.stringify(this.state))
+/*         this.props.navigation.navigate(Editpage, {Aluno: this.state})
+ */
     }
 
     handleTextarea = (event) => {
-        this.setState({[event.target.name]: event.target.value})
+        this.setState({[event.target.name]: false})
         let check = this.props.location.state.checkRestrictions;
         let checkbox = document.getElementById([event.target.name]);
         console.log("checkbox: ", checkbox)
@@ -76,6 +86,21 @@ class Registerpage extends Component {
            }
        ];
 
+       const classOptions = [
+           {
+               value: ''
+           },
+           {
+               value: '10A'
+           },
+           {
+               value: '20B'
+           },
+           {
+               value: '30C'
+           }
+       ];
+
         return (
 
             <div id="divBody">
@@ -95,28 +120,27 @@ class Registerpage extends Component {
             
                 <div id="divForm"> 
 
-                    <form onSubmit>
+                    <form onSubmit={this.handleSubmit}>
 
                         <div id="inicial">
                             <label htmlFor="name">Nome do Aluno</label>
-                            <input id="name" type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
-                            <label htmlFor="birthDate">Data de Nascimento</label>
-                            <input id="birthDate" type="date" name="birthDate" value={this.state.birthDate} onChange={this.handleChange} />
+                            <input required id="name" type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
+                            <Date valor={this.state.birthDate} change={this.handleChange.bind(this)}/>
                             <label htmlFor="responsible">Nome do Responsável pela criança</label>
                             <input id="responsible" type="text" name="responsible" value={this.state.responsible} onChange={this.handleChange}/>
-                            <label htmlFor="responsiblePhone">Telefone de Contato do Responsável pela criança</label>
-                            <input id="responsiblePhone" type="cellphone" name="responsiblePhone" value={this.state.responsiblePhone} onChange={this.handleChange} />
-                            
-                            <label htmlFor="emergencyCase">Em caso de emergência avisar: (Pais, Tios, Avós, )</label>
+                            <label htmlFor="responsiblePhone">Telefone do Responsável</label>
+                            <InputMask mask="(999)999999999" id="responsiblePhone" name="responsiblePhone" nome="Telefone do Responsável" value={this.state.responsiblePhone}
+                            onChange={this.handleChange}/>                            <label htmlFor="emergencyCase">Em caso de emergência avisar: (Pais, Tios, Avós, )</label>
                             
                             <select name="emergencyCase" onChange={this.onChangeSelect}>
                                 {emergencyCase.map((item) => (
                                     <option value={item.value}>{item.value}</option>
                                 ))}
                             </select>
-
+                            
                             <label htmlFor="emergencyPhone">Telefone para Emergências</label>
-                            <input id="emergencyPhone" type="cellphone" name="emergencyPhone" value={this.state.emergencyPhone} onChange={this.handleChange}/>
+                            <InputMask mask="(999)999999999" valor={this.state.emergencyPhone} id="emergencyPhone" name="emergencyPhone" onChange={this.handleChange}/>
+
                         </div>
                             
                         <div id="final">
@@ -142,10 +166,12 @@ class Registerpage extends Component {
                             <input id="authorizedList" type="text" name="authorizedList" value={this.state.authorizedList} onChange={this.handleChange}/>
                             
                             <label htmlFor="class">Turma</label>
-                            <select id="class" name="class" value={this.state.class} onChange={this.handleChange}>
-                                <option value="10A"></option>
-                                <option value="10B"></option>
-                                <option value="10C"></option>
+
+                            <select name="class" id="class" 
+                            onChange={this.onChangeSelect}>
+                                {classOptions.map((item) => (
+                                    <option value={item.value}>{item.value}</option>
+                                ))}
                             </select>
                             
                             <label htmlFor="addNotes">Observações adicionais</label>
