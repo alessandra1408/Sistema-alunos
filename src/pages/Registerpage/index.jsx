@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import Editpage from '../Editpage';
 import Homepage from '../Homepage';
 import InputMask from "react-input-mask"
+import { Button } from '@material-ui/core';
 import Date from './Date'
+
 
 import '../Registerpage/style.css'
 
@@ -176,6 +178,13 @@ class Registerpage extends Component {
                             
                             <label htmlFor="addNotes">Observações adicionais</label>
                             <input id="addNotes" type="text" name="addNotes" value={this.state.addNotes} onChange={this.handleChange}/>
+                                
+                            <label htmlFor="familyList">Pessoas autorizadas</label>
+                            <div class="divFamilyList">
+                                <input id="familyList" type="text" placeholder="Clauber" />
+                                <input id="familyRelation" type="text" placeholder="Pai"/>
+                                <Button>ADD</Button>
+                            </div>
                         </div>
 
                         <footer >
