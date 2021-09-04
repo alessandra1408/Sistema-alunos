@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Container, FormLabel, Input, InputLabel } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add'
+
+
 
 
 class Editpage extends Component{
@@ -17,7 +21,7 @@ class Editpage extends Component{
 
     render(){
         return(
-            <div id="divBody">
+            <Container>
                 <div id="divMenu">
                     <nav>
                             <ul>
@@ -37,7 +41,8 @@ class Editpage extends Component{
                         <li></li>
                     </ul>
                 </div>
-                        
+                
+                
 
                 <div id="divForm"> 
 
@@ -61,7 +66,8 @@ class Editpage extends Component{
                         </div>
                     </form>
                 </div>
-            </div>
+                <Button startIcon={<AddIcon />} variant="contained" color="primary" mx="auto"/>
+            </Container>
         )
     }
 }

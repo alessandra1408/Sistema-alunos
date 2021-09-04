@@ -24,7 +24,6 @@
 }
 
 #divCheckboxRestrictions label{
-
     float: left;
 }
 
@@ -51,7 +50,7 @@
 
 .divFamilyList button{
     text-align: center;
-    width: 15%;
+    width: 10%;
     float: inline-end;
 }
 
@@ -87,7 +86,7 @@ button[type=button] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: #04AA6D;
+
     color: white;
     font-weight: bold;
     font-size: 12pt;
@@ -97,7 +96,6 @@ button[type=button] {
 /* Style the submit button */
 button[type=submit] {
 
-    background-color: #04AA6D;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -134,6 +132,7 @@ label{
     font-size: .8rem;
     letter-spacing: 1px;
     color: black;
+    margin-bottom: 10px;
 }
 
 textarea {
@@ -143,9 +142,4 @@ textarea {
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
     margin-bottom: 12px;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
 }

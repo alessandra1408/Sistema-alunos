@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Registerpage from '../../Registerpage';
 import InputMask from "react-input-mask"
+import "../Date/style.css"
 
 
 class Date extends Component {
@@ -8,7 +8,6 @@ class Date extends Component {
 
         return(
             <>
-            <label htmlFor="birthDate">Data de Nascimento</label>
             <InputMask mask="99/99/9999" id="birthDate" type="text" name="birthDate"
             value={this.props.valor}
             onChange={this.props.change} />
