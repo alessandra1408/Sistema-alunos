@@ -1,13 +1,9 @@
-import React, { Component, useState} from 'react';
-import { Link } from 'react-router-dom';
-import Editpage from '../Editpage';
-import Homepage from '../Homepage';
-import InputMask from "react-input-mask";
-import { Button, FormLabel, Input, InputLabel } from '@material-ui/core';
+import React, { Component, createElement} from 'react';
+import Header from '../../components/Header'
+import { Button, FormLabel, InputLabel, Container, CssBaseline, TextField, Grid, Select, Checkbox, MenuItem, FormControlLabel, Box, FormGroup } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import Date from './Date'
 
-import '../Registerpage/style.css'
+import '../Registerpage/style.css';
 
 class Registerpage extends Component {
     constructor(props){
@@ -25,6 +21,8 @@ class Registerpage extends Component {
             authorizedList: '',
             class: '',
             addNotes: '',
+            f: '',
+            familyList: ["Clauber"]
         }
     }
     
@@ -35,26 +33,19 @@ class Registerpage extends Component {
 
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value})
-
-        console.log({[event.target.name]: event.target.value});
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state)
         localStorage.setItem(this.state.name,JSON.stringify(this.state))
-/*         this.props.navigation.navigate(Editpage, {Aluno: this.state})
- */
     }
 
     handleTextarea = (event) => {
         this.setState({[event.target.name]: false})
-        let check = this.props.location.state.checkRestrictions;
         let checkbox = document.getElementById([event.target.name]);
-        console.log("checkbox: ", checkbox)
-        console.log("Antes",this.props.location.state.checkRestrictions)
 
-        this.setState({[event.target.name]: this.props.location.state.checkRestrictions})
+        this.setState({[event.target.name]: this.state.restrictions})
 
         if(checkbox.checked){
             this.setState({[event.target.name]: true})
@@ -62,13 +53,15 @@ class Registerpage extends Component {
         else{
             this.setState({[event.target.name]: false})
         }
-        
-        /* this.setState({this.props.location.state.checkRestrictions: false}) */
-        console.log(check)
+    }
+
+    addFamily= () => {
+        this.setState({familyList: [].concat(this.state.familyList, this.state.f)})
     }
 
     render(){
-
+        
+        console.log(this.state)
        const emergencyCase = [
            {
                 value: ''
@@ -104,98 +97,192 @@ class Registerpage extends Component {
 
         return (
 
-            <div id="divBody">
-                <div id="divMenu">
-                    <nav>
-                            <ul>
-                                <li>
-                                <Link to="/">Home</Link>
-                                </li>
+                <Container component="main" maxWidth={false}>
+                    <Header />
+                    <CssBaseline />
 
-                                <li>
-                                <Link to="/editpage">Edit</Link>
-                                </li>
-                            </ul>
-                    </nav>
-                </div>
-            
-                <div id="divForm"> 
+                    <Container className="Form">
+                        <FormLabel>
+                            <Grid container spacing={4}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField 
+                                    autoComplete="name"
+                                    name="name"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    label="Nome do Aluno"
+                                    value={this.state.name}
+                                    onChange={this.handleChange}
+                                    autoFocus
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField 
+                                    name="birthDate"
+                                    variant="outlined"
+                                    type="date"
+                                    required
+                                    fullWidth
+                                    label="Data de Nascimento"
+                                    value={this.state.birthDate}
+                                    onChange={this.handleChange}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                        }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField 
+                                    name="responsible"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    label="Nome do Responsável pela criança"
+                                    value={this.state.responsible}
+                                    onChange={this.handleChange}
+                                    />
+                                </Grid>
+                                <Grid id="responsiblePhone" item xs={12} sm={6}>
+                                    <TextField 
+                                        name="responsiblePhone"
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        label="Telefone do Responsável pela criança"
+                                        value={this.state.responsiblePhone}
+                                        onChange={this.handleChange}
+                                        />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <InputLabel id='emergencyCase'>Em caso de Emergência avisar:</InputLabel>
+                                    <Select
+                                    name="emergencyCase"
+                                    labelId='emergencyCase'
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    label="Em caso de emergência avisar"
+                                    value={this.state.emergencyCase}
+                                    onChange={this.handleChange} >
+                                            
+                                            {emergencyCase.map((item) => (
+                                            <MenuItem value={item.value}>{item.value}</MenuItem>
+                                            ))}
+
+                                    </Select>
+                                </Grid>
+                                <Grid id="emergencyPhone" item xs={12} sm={6}>
+                                    <TextField 
+                                        name="emergencyPhone"
+                                        variant="outlined"
+                                        type="phone"
+                                        required
+                                        fullWidth
+                                        label="Telefone para Emergências"
+                                        value={this.state.emergencyPhone}
+                                        onChange={this.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControlLabel
+                                        control={<Checkbox onChange={this.handleTextarea} id="restrictions" name="restrictions" />}
+                                        label="Possui Restrição Alimentar?"
+                                    />
+
+                                    {this.state.restrictions && (
+                                        <>
+                                            <InputLabel htmlFor="descriptionRestrictions" id="labelRestrictions">Descrição das Restrições Alimentares</InputLabel>
+                                            <TextField
+                                                name="descriptionRestrictions"
+                                                variant="outlined"
+                                                required
+                                                fullWidth
+                                                value={this.state.descriptionRestrictions}
+                                                onChange={this.handleChange}/>
+                                        </>
+                                    )}
 
 
-                    <FormLabel onSubmit={this.handleSubmit}>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormControlLabel
+                                        control={<Checkbox onChange={this.handleTextarea} id="useImage" name="useImage" />}
+                                        label="Autorização de fotos e vídeos da criança para uso escolar?"
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField 
+                                    name="authorizedList"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    label="Lista de autorizados a buscar a criança"
+                                    value={this.state.authorizedList}
+                                    onChange={this.handleChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <InputLabel id='class'>Turma</InputLabel>
+                                    <Select
+                                    name="class"
+                                    labelId='class'
+                                    variant="outlined"
 
-                        <div id="inicial">
-                            <InputLabel htmlFor="name">Nome do Aluno</InputLabel>
-                            <Input id="name" type="text" name="name" value={this.state.name} onChange={this.handleChange}/>
-                            <InputLabel htmlFor="birthDate">Data de Nascimento</InputLabel>
-                            <Date valor={this.state.birthDate} change={this.handleChange.bind(this)}/>
-                            <InputLabel htmlFor="responsible">Nome do Responsável pela criança</InputLabel>
-                            <Input id="responsible" type="text" name="responsible" value={this.state.responsible} onChange={this.handleChange}/>
-                            <InputLabel htmlFor="responsiblePhone">Telefone do Responsável</InputLabel>
-                            <InputMask mask="(999)999999999" id="responsiblePhone" name="responsiblePhone" nome="Telefone do Responsável" value={this.state.responsiblePhone}
-                            onChange={this.handleChange}/>                            <InputLabel htmlFor="emergencyCase">Em caso de emergência avisar: (Pais, Tios, Avós, )</InputLabel>
-                            
-                            <select name="emergencyCase" onChange={this.onChangeSelect}>
-                                {emergencyCase.map((item) => (
-                                    <option value={item.value}>{item.value}</option>
-                                ))}
-                            </select>
-                            
-                            <InputLabel htmlFor="emergencyPhone">Telefone para Emergências</InputLabel>
-                            <InputMask mask="(999)999999999" valor={this.state.emergencyPhone} id="emergencyPhone" name="emergencyPhone" onChange={this.handleChange}/>
+                                    required
+                                    fullWidth
+                                    label="Em caso de emergência avisar"
+                                    value={this.state.class}
+                                    onChange={this.handleChange} >
+                                            
+                                            {classOptions.map((item) => (
+                                            <MenuItem value={item.value}>{item.value}</MenuItem>
+                                            ))}
 
-                        </div>
-                            
-                        <div id="final">
-                            <div id="divCheckboxRestrictions">
-                                <InputLabel htmlFor="restrictions">Possui Restrição Alimentar?</InputLabel>
-                                <Input id="restrictions" type="checkbox" name="restrictions" value={this.state.restrictions} onChange={this.handleTextarea}/>
-                            
-                                </div> 
-                            {this.state.restrictions && (
-                                <>
-                                <InputLabel htmlFor="descriptionRestrictions">Descrição das Restrições Alimentares</InputLabel>
-                                <textarea id="descriptionRestrictions" name="descriptionRestrictions" value={this.state.descriptionRestrictions} onChange={this.handleChange}/>
-                                </>
-                            )}
-                           
-
-                            <div id="divCheckboxUseImage">
-                                <InputLabel htmlFor="useImage">Autorização de fotos e vídeos da criança para uso escolar?</InputLabel>
-                                <Input type="checkbox" name="useImage" value={this.state.useImage} id="useImage" onChange={this.handleTextarea}/>
-                            </div>
-
-                            <InputLabel htmlFor="authorizedList">Lista de autorizados a buscar a criança. Ex. Pedro – Padrinho, Maria – Tia</InputLabel>
-                            <Input id="authorizedList" type="text" name="authorizedList" value={this.state.authorizedList} onChange={this.handleChange}/>
-                            
-                            <InputLabel htmlFor="class">Turma</InputLabel>
-
-                            <select name="class" id="class" 
-                            onChange={this.onChangeSelect}>
-                                {classOptions.map((item) => (
-                                    <option value={item.value}>{item.value}</option>
-                                ))}
-                            </select>
-                            
-                            <InputLabel htmlFor="addNotes">Observações adicionais</InputLabel>
-                            <Input id="addNotes" type="text" name="addNotes" value={this.state.addNotes} onChange={this.handleChange}/>
+                                    </Select>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField 
+                                        name="addNotes"
+                                        variant="outlined"
+                                        fullWidth
+                                        label="Observações adicionais"
+                                        value={this.state.addNotes}
+                                        onChange={this.handleChange}
+                                        />
+                                </Grid>
                                 
-                            <InputLabel htmlFor="familyList">Pessoas autorizadas</InputLabel>
-                            <div class="divFamilyList">
-                                <Input id="familyList" type="text" placeholder="Clauber" />
-                                <Input id="familyRelation" type="text" placeholder="Pai"/>
-                                <Button startIcon={<AddIcon />} size="small" variant="contained" color="primary"/>
-                            </div>
-                        </div>
 
-                        <footer >
-                            <Button type="submit">Cadastrar</Button>
-                        </footer>
-
-                    </FormLabel>
+                                    {this.state.familyList.map(f =>
+                                        <>
+                                            <Grid class="familyList" name="familyList" id="familyList" item xs={12}>
+                                                <TextField
+                                                name="familyList"
+                                                variant="outlined"
+                                                required
+                                                style = {{width: 300}}
+                                                label="Lista de autorizados a buscar:"
+                                                value={this.state.f}
+                                                onChange={this.handleChange}
+                                                />
+                                                <Button
+                                                id="btnAdd"
+                                                variant="contained" onClick={this.addFamily} color="primary" value={this.state.familyList}>{<AddIcon />}</Button>
+                                            </Grid>
+                                        </>   
+                                    )}
+                            </Grid>    
+                                <Box  display="flex" justifyContent="center" m={2} p={1} style={{height: 70}}>
+                                    <Button
+                                        variant="contained"
+                                        color="Secondary"
+                                        style = {{left: 30}}
+                                        onClick={this.handleSubmit}>Cadastrar</Button>
+                                </Box>
+                        </FormLabel>
+                    </Container>
                 
-                </div>
-            </div>
+                </Container>
         );
     }
 }

@@ -1,145 +1,19 @@
-
-#divBody{
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, #2bee39 0%, #03caf2f7 100%);
+#emergencyPhone{
+    margin-top: 15px;
 }
 
-#inicial{
-    margin-top: 3%;
-    margin-left: 2%;
-    width: 47%;
-    float: left;
-}
-
-#final{
-    margin-top: 3%;
-    margin-right: 2%;
-    width: 47%;
-    float: right;
-}
-
-#divCheckboxRestrictions{
-    width: 100%;
-    display: inline-flex;
-    margin-bottom: 15px;
-}
-
-#divCheckboxRestrictions label{
-    float: left;
-}
-
-#divCheckboxRestrictions input{
-    width: min-content;
-    height: min-content;
-    float: right;
-}
-
-#divCheckboxUseImage{
-    width: 100%;
-    display: inline-flex;
-}
-
-.divFamilyList{
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-between;
-}
-
-.divFamilyList input{
-    width: auto;
-}
-
-.divFamilyList button{
-    text-align: center;
-    width: 10%;
-    float: inline-end;
-}
-
-footer{
-    margin-left: 2%;
-    clear: both;
-}
-
-/* Style inputs */
-input, select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type=checkbox]{
-    width: fit-content;
-    float: right;
-    margin-top: 0px;
-    margin-left: 7%;
-    margin-bottom: 10px;
-    padding-bottom: 30px;
-}
-
-button[type=button] {
-    padding: 10px 10px;
-    margin: 20px 5px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-
-    color: white;
-    font-weight: bold;
-    font-size: 12pt;
-    cursor: pointer;
-}
-  
-/* Style the submit button */
-button[type=submit] {
-
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12pt;
-    font-weight: bold;
-}
-  
-/* Add a background color to the submit button on mouse-over */
-input[type=submit]:hover {
-    background-color: rgb(36, 88, 73);
-}
-
-ul{
-    
-    margin-left: 1080px;
-    /* margin-top: -35px; */
-}
-  
-li{
-    width: max-content;
-    background-color: white;
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 10px 10px;
-    border-radius: 5px;
-    margin-right: 10px;
-}
-
-label{
-    width: fit-content;
-    font-size: .8rem;
-    letter-spacing: 1px;
-    color: black;
+#restrictions{
     margin-bottom: 10px;
 }
 
-textarea {
-    width: 100%;
-    line-height: 1.5;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #999;
-    margin-bottom: 12px;
+#class{
+    margin-top: -15px;
+}
+
+.familyList{
+    display: inline-flex;
+}
+
+#btnAdd{
+    margin-left: 25px;
 }

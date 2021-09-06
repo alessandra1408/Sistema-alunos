@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, FormLabel, Input, InputLabel } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add'
+import Header from '../../components/Header';
 
 
 
@@ -22,28 +23,8 @@ class Editpage extends Component{
     render(){
         return(
             <Container>
-                <div id="divMenu">
-                    <nav>
-                            <ul>
-                                <li>
-                                <Link to="/">Home</Link>
-                                </li>
-
-                                <li>
-                                <Link to="/register">Register</Link>
-                                </li>
-                            </ul>
-                    </nav>
-                </div>
-
-                <div>
-                    <ul>
-                        <li></li>
-                    </ul>
-                </div>
+                <Header />
                 
-                
-
                 <div id="divForm"> 
 
                     <h1>Aluno: {this.state.name}</h1>

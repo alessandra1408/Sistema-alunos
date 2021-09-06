@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
-import Route from '../../route';
+import { Container, Typography, CssBaseline } from '@material-ui/core';
+import { MenuList, MenuItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import './index.css'
+import './style.css'
 
 class Header extends Component {
     render(){
         return (
-            <div>
-                <header>Alunos Escola Amorinha</header>
-            </div>
+            <Container id="container">
+                <CssBaseline/>
+                <Typography id="h1">Sistema De Alunos Escola Amorinha</Typography>
+
+                <MenuList class="menu">
+                        <MenuItem >
+                            <Link class="item" to="/">Home</Link>
+                        </MenuItem>
+                        <MenuItem >
+                            <Link class="item" to="/register">Register</Link>
+                        </MenuItem>                           
+                        <MenuItem >
+                            <Link class="item" to="/editpage">Edit</Link>
+                        </MenuItem>                         
+                    </MenuList>
+            </Container>
         );
     }
 };
